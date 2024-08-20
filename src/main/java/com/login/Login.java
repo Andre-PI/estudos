@@ -17,8 +17,7 @@ public class Login extends HttpServlet {
         ConnectDB connect = new ConnectDB();
         HttpSession session = request.getSession();
         if(connect.confirmPassword(username, password)){
-            session.setAttribute("username", username);
-            session.setAttribute("email", connect.returnData(username).split(";")[1]);
+            session.setAttribute("userData", username+";"+connect.returnData(username).split(";")[1]);
             response.sendRedirect("welcome.jsp");
             return;
         }
